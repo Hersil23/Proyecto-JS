@@ -8,6 +8,8 @@
 <script>
   tailwind.config = {
     darkMode: 'class',
+    theme: {},
+    variants: {},
   };
 </script>
 
@@ -42,11 +44,15 @@
   </nav>
   
   <!-- Menú móvil desplegable -->
-  <div id="mobileMenu" class="md:hidden px-6 py-4 space-y-4 hidden bg-white dark:bg-gray-800">
-    <a href="#" class="block hover:text-blue-600 dark:hover:text-blue-400">Iniciar sesión</a>
-    <a href="#" class="block hover:text-blue-600 dark:hover:text-blue-400">Registrarse</a>    
-    <a href="#" class="block hover:text-blue-600 dark:hover:text-blue-400">Favoritos</a>
-  </div>
+  <nav id="mobileMenu" class="hidden absolute mb-2 w-48 bg-white right-0 shadow-lg rounded-md p-4 flex flex-col space-y-2 z-10 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition duration-300">
+    <a href="#" class="hover:text-blue-500">Inicio</a>
+    <a href="#" class="hover:text-blue-500">Servicios</a>
+    <a href="#" class="hover:text-blue-500">Contacto</a>
+  </nav>
+
+
+
+
 
 
 
@@ -56,9 +62,9 @@
 
       
 
-    </nav>
   </header>
   <script src="./script.js"></script>
   <script src="./modedark.js"></script>
+  
 </body>
 </html>
