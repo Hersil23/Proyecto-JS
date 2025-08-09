@@ -4,10 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema LR-RaM</title>
+    <script>tailwind.config = {
+    darkMode: 'class',
+    };
+</script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
   </head>
-<body>
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition duration-300">
+
+
   <header>
     <nav>
+<nav class="px-6 py-4 flex items-center justify-between shadow-md bg-white dark:bg-gray-800">
+    <!-- Logo a la izquierda -->
+    <div class="flex items-center space-x-2">
+      <img src="./resources/logo_modeclear-removebg-preview.png" alt="Logo" class="h-10 w-auto">
+    </div>
+
+    <!-- Menú + Botón modo oscuro -->
+    <div class="flex items-center space-x-6">
+      <!-- Menú de navegación -->
+      <ul class="hidden md:flex space-x-6 font-medium">
+        <li><a href="#" class="hover:text-blue-600 dark:hover:text-blue-400">Iniciar sesión</a></li>
+        <li><a href="#" class="hover:text-blue-600 dark:hover:text-blue-400">Registrarse</a></li>        
+        <li><a href="#" class="hover:text-blue-600 dark:hover:text-blue-400">Favoritos</a></li>
+      </ul>
+
+      <!-- Botón modo oscuro -->
+      <button id="darkToggle" class="text-xl focus:outline-none">
+        🌙
+      </button>
+
+      <!-- Menú móvil -->
+      <button id="menuToggle" class="md:hidden text-2xl focus:outline-none">
+        ☰
+      </button>
+    </div>
+  </nav>
+  
+  <!-- Menú móvil desplegable -->
+  <div id="mobileMenu" class="md:hidden px-6 py-4 space-y-4 hidden bg-white dark:bg-gray-800">
+    <a href="#" class="block hover:text-blue-600 dark:hover:text-blue-400">Iniciar sesión</a>
+    <a href="#" class="block hover:text-blue-600 dark:hover:text-blue-400">Registrarse</a>    
+    <a href="#" class="block hover:text-blue-600 dark:hover:text-blue-400">Favoritos</a>
+  </div>
+
+
+
+
 
 
 
@@ -15,5 +60,7 @@
 
     </nav>
   </header>
+  <script src="./script.js"></script>
+  <script src="./modedark.js"></script>
 </body>
 </html>
