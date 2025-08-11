@@ -1,22 +1,22 @@
-const container = document.getElementById('characterContainer');
-const paginationContainer = document.getElementById('pagination');
+const container = document.getElementById('characterContainer'); // Contenedor de personajes
+const paginationContainer = document.getElementById('pagination'); // Contenedor de paginación
 const apiUrl = 'https://rickandmortyapi.com/api/character';
-let currentPage = 1; // 🆕 Página actual
+let currentPage = 1; // Página actual
 
 // @function Obtener personajes con paginación
 async function fetchCharacters(page = 1) {
   try {
-    const res = await fetch(`${apiUrl}?page=${page}`); // 🆕 Se agrega parámetro de página
+    const res = await fetch(`${apiUrl}?page=${page}`);
     const data = await res.json();
     renderCharacters(data.results);
-    renderPagination(data.info.pages); // 🆕 Renderiza botones de paginación
+    renderPagination(data.info.pages); // Renderiza botones y número de página
   } catch (error) {
     console.error('Error al obtener personajes:', error);
     container.innerHTML = '<p class="text-red-500 text-center">No se pudo cargar la información.</p>';
   }
 }
 
-// @function Renderizar tarjetas donde se alojan los personajes
+// @function Renderizar tarjetas de personajes
 function renderCharacters(characters) {
   container.innerHTML = '';
   characters.forEach(char => {
@@ -32,7 +32,7 @@ function renderCharacters(characters) {
   });
 }
 
-// 🆕 @function Renderizar botones de paginación
+// @function Renderizar paginación con número de página
 function renderPagination(totalPages) {
   paginationContainer.innerHTML = '';
 
@@ -45,6 +45,10 @@ function renderPagination(totalPages) {
     fetchCharacters(currentPage);
   };
 
+  const pageIndicator = document.createElement('span');
+  pageIndicator.textContent = `Página ${currentPage} de ${totalPages}`;
+  pageIndicator.className = 'text-gray-700 dark:text-gray-200 font-medium mb-4';
+
   const nextBtn = document.createElement('button');
   nextBtn.textContent = 'Siguiente ➡️';
   nextBtn.className = 'px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50 mb-4';
@@ -54,9 +58,15 @@ function renderPagination(totalPages) {
     fetchCharacters(currentPage);
   };
 
-  paginationContainer.appendChild(prevBtn);
-  paginationContainer.appendChild(nextBtn);
+  const navWrapper = document.createElement('div');
+  navWrapper.className = 'flex flex-col sm:flex-row justify-center items-center gap-4';
+
+  navWrapper.appendChild(prevBtn);
+  navWrapper.appendChild(pageIndicator);
+  navWrapper.appendChild(nextBtn);
+
+  paginationContainer.appendChild(navWrapper);
 }
 
-// 🆕 Ejecutamos la función con la página inicial
+// Ejecutar con la página inicial
 fetchCharacters(currentPage);
