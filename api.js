@@ -3,7 +3,7 @@
 const container = document.getElementById('characterContainer');
 const apiUrl = 'https://rickandmortyapi.com/api/character';
 
-// 🔄 Obtener personajes
+// @function Obtener personajes
 async function fetchCharacters() {
   try {
     const res = await fetch(apiUrl);
@@ -15,7 +15,7 @@ async function fetchCharacters() {
   }
 }
 
-// 🎨 Renderizar tarjetas
+// @function Renderizar tarjetas donde se alojan los personajes
 function renderCharacters(characters) {
   container.innerHTML = '';
   characters.forEach(char => {
@@ -31,5 +31,5 @@ function renderCharacters(characters) {
   });
 }
 
-// 🚀 Inicial
+// ejecutamos la función para obtener los personajes
 fetchCharacters();
