@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema LR-RaM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {},
+        variants: {},
+      };
+    </script>
+  </head>
+  <body class="bg-white dark:bg-gray-900 flex flex-col min-h-screen text-gray-800 dark:text-gray-100 transition duration-300">
+    <nav class="px-6 py-4 flex items-center justify-between shadow-md bg-white dark:bg-gray-800">
+      <!-- Logo a la izquierda -->
+      <div class="flex items-center space-x-2">
+        <img src="./resources/logo_modeclear-removebg-preview.png" alt="Logo" class="h-10 w-auto">
+      </div>
+      <!-- Menú + Botón modo oscuro -->
+      <div class="flex items-center space-x-6">
+        <!-- Menú de navegación -->
+        <ul class="hidden md:flex space-x-6 font-medium">
+            <li><a href="./index.html" class="hover:text-blue-600 dark:hover:text-blue-400">Inicio</a></li>
+            <li><a href="./iniciar.html" class="hover:text-blue-600 dark:hover:text-blue-400">Iniciar sesión</a></li>
+            <li><a href="./registrar.html" class="hover:text-blue-600 dark:hover:text-blue-400">Registrarse</a></li>        
+            <li><a href="./favoritos.html" class="hover:text-blue-600 dark:hover:text-blue-400">Favoritos</a></li>
+          </ul>
+        <!-- Botón modo oscuro -->
+        <button id="darkToggle" class="text-xl focus:outline-none">
+          🌙
+        </button>
+        <!-- Menú móvil -->
+        <button id="menuToggle" class="md:hidden text-2xl focus:outline-none">
+          ☰
+        </button>
+      </div>
+      <!-- Menú móvil desplegable -->
+    <div id="mobileMenu"
+      class="hidden absolute right-0 top-12 mt-2 w-48 bg-white dark:bg-gray-900 shadow-lg rounded-md p-4 flex flex-col space-y-2 z-10 text-gray-800 dark:text-gray-100 transition duration-300">
+      <a href="./index.html" class="hover:text-blue-500">Inicio</a>
+      <a href="./iniciar.html" class="hover:text-blue-500">Iniciar sesión</a>
+      <a href="./registrar.html" class="hover:text-blue-500">Registrarse</a>
+      <a href="./favoritos.html" class="hover:text-blue-500">Favoritos</a>
+  </div>
+    </nav>
+    <main class="bg-gray-100 dark:bg-gray-900 flex-grow flex items-center justify-center px-4">
+  <div class="max-w-md w-full bg-white dark:bg-gray-800 p-6 my-4 rounded shadow">
+    <h2 class="text-2xl font-bold mb-4 text-center">Registrarse</h2>
+    <form id="registerForm" class="space-y-4">
+      <input type="text" id="nombre" placeholder="Nombre" required class="w-full px-4 py-2 rounded bg-gray-100 dark:bg-gray-700" />
+      <input type="text" id="apellido" placeholder="Apellido" required class="w-full px-4 py-2 rounded bg-gray-100 dark:bg-gray-700" />
+      <input type="email" id="correo" placeholder="Correo" required class="w-full px-4 py-2 rounded bg-gray-100 dark:bg-gray-700" />
+      <input type="password" id="contrasena" placeholder="Contraseña" required class="w-full px-4 py-2 rounded bg-gray-100 dark:bg-gray-700" />
+      <input type="password" id="confirmarContrasena" placeholder="Confirmar contraseña" required class="w-full px-4 py-2 rounded bg-gray-100 dark:bg-gray-700" />
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Enviar</button>
+    </form>
+    <p class="mt-4 text-center text-sm">¿Ya estás registrado? <a href="iniciar.html" class="text-blue-500 hover:underline">Inicia sesión</a></p>
+  </div>
+</main>
+    <footer class="px-6 py-4 flex items-center justify-center shadow-md bg-white dark:bg-gray-800 text-center">
+      © 2025 Sistema LR-RaM. Todos los personajes pertenecen a sus respectivos dueños,<br /> este sitio web esta hecho con fines educativos y de entretenimiento.
+    </footer>
+    <script src="./script.js"></script>
+    <script src="./modedark.js"></script>
+    <script src="./registrase.js"></script>
+
+  </body>
+</html>
