@@ -1,51 +1,70 @@
-document.getElementById("registerForm").addEventListener("submit", function (e) {
-  e.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("registerForm");
 
-  const nombre = document.getElementById("nombre").value.trim();
-  const apellido = document.getElementById("apellido").value.trim();
-  const correo = document.getElementById("correo").value.trim();
-  const contrasena = document.getElementById("contrasena").value;
-  const confirmarContrasena = document.getElementById("confirmarContrasena").value;
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-  const nombreRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
-  const correoRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const contrasenaRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+    // Obtener valores
+    const nombre = document.getElementById("nombre").value.trim();
+    const apellido = document.getElementById("apellido").value.trim();
+    const correo = document.getElementById("correo").value.trim();
+    const contrasena = document.getElementById("contrasena").value;
+    const confirmarContrasena = document.getElementById("confirmarContrasena").value;
 
-  if (!nombreRegex.test(nombre)) {
-    alert("Por favor ingresa un nombre válido (solo letras).");
-    return;
-  }
+    // Expresiones regulares
+    const regexNombre = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
+    const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const regexContrasena = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
 
-  if (!nombreRegex.test(apellido)) {
-    alert("Por favor ingresa un apellido válido (solo letras).");
-    return;
-  }
+    // Validaciones
+    if (!regexNombre.test(nombre)) {
+      alert("El nombre solo debe contener letras y espacios.");
+      return;
+    }
 
-  if (!correoRegex.test(correo)) {
-    alert("Por favor ingresa un correo electrónico válido.");
-    return;
-  }
+    if (!regexNombre.test(apellido)) {
+      alert("El apellido solo debe contener letras y espacios.");
+      return;
+    }
 
-  if (!contrasenaRegex.test(contrasena)) {
-    alert("La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial.");
-    return;
-  }
+    if (!regexCorreo.test(correo)) {
+      alert("El correo electrónico no es válido.");
+      return;
+    }
 
-  if (contrasena !== confirmarContrasena) {
-    alert("Las contraseñas no coinciden.");
-    return;
-  }
+    if (!regexContrasena.test(contrasena)) {
+      alert("La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial.");
+      return;
+    }
 
-  // Guardar en localStorage
-  const usuario = {
-    nombre,
-    apellido,
-    correo,
-    contrasena
-  };
+    if (contrasena !== confirmarContrasena) {
+      alert("Las contraseñas no coinciden.");
+      return;
+    }
 
-  localStorage.setItem("usuarioRegistrado", JSON.stringify(usuario));
+    // Obtener usuarios existentes
+    const usuariosRegistrados = JSON.parse(localStorage.getItem("usuariosRegistrados")) || [];
 
-  alert("¡Te has registrado correctamente! Ahora puedes iniciar sesión.");
-  window.location.href = "iniciar.html";
+    // Verificar si el correo ya está registrado
+    const usuarioExistente = usuariosRegistrados.find(u => u.correo === correo);
+
+    if (usuarioExistente) {
+      alert("Este usuario ya está registrado localmente.");
+      return;
+    }
+
+    // Guardar nuevo usuario
+    const nuevoUsuario = {
+      nombre,
+      apellido,
+      correo,
+      contrasena // ⚠️ En producción, nunca se guarda en texto plano
+    };
+
+    usuariosRegistrados.push(nuevoUsuario);
+    localStorage.setItem("usuariosRegistrados", JSON.stringify(usuariosRegistrados));
+
+    alert("Usuario registrado correctamente");
+    form.reset();
+  });
 });
