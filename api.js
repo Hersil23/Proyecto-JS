@@ -5,22 +5,22 @@ const paginationContainer = document.getElementById('pagination');
 const apiUrl      = 'https://rickandmortyapi.com/api/character';
 let currentPage   = 1;
 
-/** 2. Leer usuario actual desde LocalStorage */
+/** 2. Leer usuario actual desde LocalStorage - CORREGIDO */
 function getCurrentUser() {
   try {
-    const raw = localStorage.getItem('currentUser');
+    const raw = localStorage.getItem('usuarioActivo'); // Cambiado de 'currentUser' a 'usuarioActivo'
     return raw ? JSON.parse(raw) : null;
   } catch (e) {
-    console.error('Error parseando currentUser:', e);
-    localStorage.removeItem('currentUser');
+    console.error('Error parseando usuarioActivo:', e);
+    localStorage.removeItem('usuarioActivo');
     return null;
   }
 }
 
-/** 3. Generar clave de favoritos */
+/** 3. Generar clave de favoritos - CORREGIDO */
 function getFavKey() {
   const user = getCurrentUser();
-  return user ? `favorites_${user.email}` : null;
+  return user ? `favorites_${user.correo}` : null; // Cambiado de 'user.email' a 'user.correo'
 }
 
 /** 4. Leer arreglo de favoritos */
