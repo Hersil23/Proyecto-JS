@@ -1,11 +1,9 @@
-// favoritos.js
-
 function verificarSesionIniciada() {
   const usuarioJSON = localStorage.getItem("usuarioActivo");
 
   if (!usuarioJSON) {
     alert("Debes iniciar sesión para acceder a esta página.");
-    window.location.replace("iniciar.html"); // 👈 reemplaza el historial
+    window.location.replace("iniciar.html"); // nos redirige a inicio para iniciar sesión
     return null;
   }
 

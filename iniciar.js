@@ -1,8 +1,8 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => { 
   const form = document.getElementById("loginForm");
 
   form.addEventListener("submit", (e) => {
-    e.preventDefault();
+    e.preventDefault();// este metodo evita el comportamiento por defecto del formulario, que es recargar la pagina o sea validamos los campos 
 
     const correo = document.getElementById("email").value.trim();
     const contrasena = document.getElementById("password").value;
