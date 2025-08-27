@@ -1,5 +1,5 @@
 // 1. Contenedores en el DOM
-const container           = document.getElementById('characterContainer');
+const container           = document.getElementById('characterContainer'); 
 const paginationContainer = document.getElementById('pagination');
 
 const apiUrl      = 'https://rickandmortyapi.com/api/character';
@@ -129,10 +129,10 @@ function renderCharacters(characters) {
 function renderPagination(totalPages) {
   paginationContainer.innerHTML = '';
 
-  const prevBtn = document.createElement('button');
-  prevBtn.type      = 'button';
+  const prevBtn = document.createElement('button'); // creamos el boton de anterior
+  prevBtn.type      = 'button'; // <–– evitar submit
   prevBtn.textContent = '⬅️ Anterior';
-  prevBtn.className = 'px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50 mb-4';
+  prevBtn.className = 'px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50 mb-4'; // estilos del boton
   prevBtn.disabled  = currentPage === 1;
   prevBtn.onclick   = () => { currentPage--; fetchCharacters(currentPage); };
 

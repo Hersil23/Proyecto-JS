@@ -1,5 +1,5 @@
 function verificarSesionIniciada() {
-  const usuarioJSON = localStorage.getItem("usuarioActivo");
+  const usuarioJSON = localStorage.getItem("usuarioActivo"); // para obtener el usuario activo en el local 
 
   if (!usuarioJSON) {
     alert("Debes iniciar sesión para acceder a esta página.");
@@ -8,7 +8,7 @@ function verificarSesionIniciada() {
   }
 
   try {
-    const usuario = JSON.parse(usuarioJSON);
+    const usuario = JSON.parse(usuarioJSON);// parseamos el JSON
 
     // Validación extra: asegurarse de que tenga nombre y correo
     if (!usuario.nombre || !usuario.correo) {
@@ -25,21 +25,17 @@ function verificarSesionIniciada() {
 }
 
 // Ejecutar validación al cargar la página
-const usuario = verificarSesionIniciada();
+const usuario = verificarSesionIniciada(); // verificamos si hay sesión iniciada
 
 if (usuario) {
-  console.log("Usuario activo:", usuario.nombre);
+  console.log("Usuario activo:", usuario.nombre); // mostramos en consola el nombre del usuario
 
   // Mostrar saludo personalizado
-  const saludo = document.getElementById("saludoUsuario");
+  const saludo = document.getElementById("saludoUsuario"); // obtenemos el elemento del saludo
   if (saludo) {
     saludo.textContent = `¡Bienvenido a tu sección de personajes Favoritos, ${usuario.nombre}!`;
   }
-
-  // Aquí puedes seguir con el resto de la lógica de favoritos
 }
-// Agregar estas funciones al final de tu favoritos.js
-
 /** Obtener favoritos del usuario actual */
 function getFavoritos() {
   const usuario = getCurrentUser();
@@ -57,21 +53,21 @@ function getFavoritos() {
 }
 
 /** Obtener usuario actual (adaptado a tu estructura) */
-function getCurrentUser() {
+function getCurrentUser() { // 
   try {
     const raw = localStorage.getItem('usuarioActivo');
-    return raw ? JSON.parse(raw) : null;
+    return raw ? JSON.parse(raw) : null;// retornamos el usuario activo o null
   } catch (e) {
-    console.error('Error parseando usuarioActivo:', e);
+    console.error('Error parseando usuarioActivo:', e); // se muestra error si llega a ocurrir
     localStorage.removeItem('usuarioActivo');
     return null;
   }
 }
 
 /** Cargar personajes favoritos desde la API */
-async function cargarPersonajesFavoritos() {
-  const favIds = getFavoritos();
-  const characterList = document.getElementById('characterList');
+async function cargarPersonajesFavoritos() { // se crea funcion asíncrona para cargar los personajes favoritos
+  const favIds = getFavoritos(); // obtenemos los IDs de los personajes favoritos
+  const characterList = document.getElementById('characterList');// obtenemos el contenedor donde se mostrarán los personajes
   
   if (favIds.length === 0) {
     characterList.innerHTML = `
@@ -83,7 +79,7 @@ async function cargarPersonajesFavoritos() {
   }
 
   // Mostrar loading
-  characterList.innerHTML = '<p class="text-gray-600 dark:text-gray-400">Cargando favoritos...</p>';
+  characterList.innerHTML = '<p class="text-gray-600 dark:text-gray-400">Cargando favoritos...</p>'; //
 
   try {
     // Obtener personajes por IDs (la API permite múltiples IDs separados por coma)
