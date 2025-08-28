@@ -136,11 +136,11 @@ function renderPagination(totalPages) {
   prevBtn.disabled  = currentPage === 1;
   prevBtn.onclick   = () => { currentPage--; fetchCharacters(currentPage); };
 
-  const pageIndicator = document.createElement('span');
+  const pageIndicator = document.createElement('span'); // creamos el indicador de página
   pageIndicator.textContent = `Página ${currentPage} de ${totalPages}`;
   pageIndicator.className = 'text-gray-700 dark:text-gray-200 font-medium mb-4';
 
-  const nextBtn = document.createElement('button');
+  const nextBtn = document.createElement('button'); // creamos el boton de siguiente
   nextBtn.type       = 'button';
   nextBtn.textContent = 'Siguiente ➡️';
   nextBtn.className  = 'px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50 mb-4';
@@ -151,7 +151,7 @@ function renderPagination(totalPages) {
   navWrapper.className = 'flex flex-col sm:flex-row justify-center items-center gap-4';
   navWrapper.append(prevBtn, pageIndicator, nextBtn);
 
-  paginationContainer.appendChild(navWrapper);
+  paginationContainer.appendChild(navWrapper);// añadimos el contenedor de navegación a la paginación
 }
 
 /** 11. Inicialización al cargar el DOM */

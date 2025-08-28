@@ -4,19 +4,19 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    // Obtener valores
+    // Obtener valores del usuario 
     const nombre = document.getElementById("nombre").value.trim();
     const apellido = document.getElementById("apellido").value.trim();
     const correo = document.getElementById("correo").value.trim();
     const contrasena = document.getElementById("contrasena").value;
     const confirmarContrasena = document.getElementById("confirmarContrasena").value;
 
-    // Expresiones regulares
+    // Expresiones regulares que condicionaran lo que el usuario puede ingresar
     const regexNombre = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
     const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const regexContrasena = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
 
-    // Validaciones
+    // Validaciones de los valores que ingresa el usuario
     if (!regexNombre.test(nombre)) {
       alert("El nombre solo debe contener letras y espacios.");
       return;
@@ -58,10 +58,10 @@ document.addEventListener("DOMContentLoaded", () => {
       nombre,
       apellido,
       correo,
-      contrasena // ⚠️ En producción, nunca se guarda en texto plano
+      contrasena 
     };
 
-    usuariosRegistrados.push(nuevoUsuario);
+    usuariosRegistrados.push(nuevoUsuario); // Añadimos el nuevo usuario al array
     localStorage.setItem("usuariosRegistrados", JSON.stringify(usuariosRegistrados));
 
     alert("Usuario registrado correctamente");

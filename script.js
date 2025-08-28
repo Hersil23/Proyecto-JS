@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {// 
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('menuToggle'); // Botón de menú
+    const mobileMenu = document.getElementById('mobileMenu'); // Menú móvil
 
     if (menuToggle && mobileMenu) {
       menuToggle.addEventListener('click', () => { // creamos el evento click para el botón de menú
